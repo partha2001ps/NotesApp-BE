@@ -42,28 +42,15 @@ const NotesController = {
         }
     },
     editNotes: async (req, res) => {
-        try {
-            const userId = req.userId;
-            const user = await User.findById(userId)
-            if (!user) {
-                return res.json({message:'user not authenticate'})
+            const { id } = req.params;
+            try {
+              const updatedNote = await Notes.findByIdAndUpdate(id, req.body, {
+                new: true,
+              });
+             return res.json(updatedNote);
+            } catch (error) {
+              return res.status(400).json({ message: error.message });
             }
-            else {
-                const { id, title, content,status } = req.body;
-                const updatedNote = await Notes.findOneAndUpdate(
-                    { _id: id, user: userId },
-                    { title: title, content: content ,status:status},
-                    { new: true }
-                );
-                if (!updatedNote) {
-                    return res.status(404).json({ error: 'Note not found' });
-                }
-               return res.status(200).json({message:"Note Updat Done"});
-           }
-        } catch (error) {
-            console.error(error);
-           return res.status(500).json({ error: 'Internal Server Error' });
-        }
     },
     deleteNotes: async (req, res) => {
         try {

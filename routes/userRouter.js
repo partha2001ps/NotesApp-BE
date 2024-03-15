@@ -10,6 +10,6 @@ userRoute.post('/reset-password', userController.resetPassword);
 userRoute.post('/reset-password/:OTP', userController.newpassword);
 userRoute.post('/notes',auth_middleware, NotesController.addNotes)
 userRoute.get('/notes',auth_middleware,NotesController.getNotes)
-userRoute.put('/notes',auth_middleware, NotesController.editNotes)
+userRoute.put('/notes/:id', NotesController.editNotes)
 userRoute.delete('/notes/:id',auth_middleware,NotesController.deleteNotes)
 module.exports=userRoute
