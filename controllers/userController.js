@@ -63,7 +63,7 @@ const userController = {
               pass: 'zceeslzyuudjptea',
             },
           });
-          const Link=`https://chatapplicationca.netlify.app/reset-password/new-password/${OTP}`
+          const Link=`https://notes-app-ps.netlify.app/reset-password/new-password/${OTP}`
           const mailOptions = {
             from: 'Password_resest_noreply@gmail.com',
             to: email,
