@@ -73,7 +73,7 @@ const NotesController = {
                 return res.json({message:'user not authenticate'})
             }
             else {
-                const { id } = req.body;
+                const {id} = user.params;
                 const deletedNote = await Notes.findOneAndDelete({ _id: id, user: userId });
                 if (!deletedNote) {
                     return res.status(404).json({ error: 'Note not found' });
